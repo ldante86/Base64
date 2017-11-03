@@ -10,11 +10,13 @@ our @ISA = qw(Exporter);
 our @EXPORT = qw(encode decode);
 our %EXPORT_TAGS = ( 'all' => [ qw(encode decode) ] );
 our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 our @base64      =       ( "A".."Z", "a".."z", "0".."9", "+", "/" );
 our @end         =       qw( o= K Cg== == = );
 our $newline	=	0;      ## 0 = add new line, 1 = no new line
+our $width	=	80;
+our $wrap	=	0;
 
 sub ascii_to_bin {
   unpack("B*", $_[0]);
@@ -43,7 +45,7 @@ sub dec_to_bin {
 ##  $newline = 0	print newline character ('\n')
 ##  $newline = 1	print no newline character
 sub encode {
-  my ($block, $lb, $i, $str) = (0, 0, 0, ascii_to_bin(@_));
+  my ($c, $block, $lb, $i, $str) = (0, 0, 0, 0, ascii_to_bin(@_));
 
   for ($i = 0; $i < length($str); $i += 6) {
     $block = substr($str, $i, 6);
@@ -52,6 +54,12 @@ sub encode {
     }
     while (length($block) < 6) {
       $block = "$block" . 0;
+    }
+    $c += 1;
+    if ($wrap == 1 && $c == $width) {
+      $c = 0;
+      print $base64[bin_to_dec($block)] . "\n";
+      next;
     }
     print $base64[bin_to_dec($block)];
   }
@@ -120,6 +128,8 @@ B<Base64> - Encode/decode base64 strings.
 
 	use Base64 qw(encode);
 	my $str = "Hello world";
+	$Base64::wrap = 1;
+	$Base64::width = 75;
 	$Base64::newline = 0;
 	encode("$str");
 
@@ -131,9 +141,19 @@ B<Base64> - Encode/decode base64 strings.
 
 This module provides subroutines for encoding and decoding base64 strings.
 
-By default, B<encode()> prints newline characters at the end of the encoded string. To suppress the newline character, do:
+By default, B<encode()> prints newline characters at the end of the encoded string. To suppress the newline character, define:
 
 	$Base64::newline = 1;
+
+To enable line wrapping in encoded output, define:
+
+	$Base64::wrap = 1;
+
+The default line wrap is 80 columns. To change the width, define:
+
+	$Base64::width = 80;
+
+Setting the width to 0 turns off line wrapping.
 
 =head1 SUBROUTINES
 
