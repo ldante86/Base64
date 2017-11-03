@@ -1,4 +1,4 @@
-# Base64 version 0.01
+# Base64 version 0.02
 
 ## MODULE
 
@@ -9,6 +9,8 @@ Base64 - encode/decode base64 strings.
 ````
 use Base64 qw(encode);
 my $str = "Hello world";
+$Base64::wrap = 1;
+$Base64::width = 75;
 $Base64::newline = 0;
 encode("$str");
 
@@ -27,6 +29,19 @@ This library contains functions for encoding and decoding base64 strings. When e
 Encode "$str" to standard output.
 #### decode("$str");
 Decode "$str" to standard output.
+
+## VARIABLES
+
+A 0 value means off; 1 means on.
+
+#### $Base64::newline = 0;
+Disable the newline character in encoded output.
+
+#### $Base64::wrap = 0;
+Enable line wrapping.
+
+#### $Base64::width = 80;
+Specify the line width. The default is 80 columns.
 
 ## INSTALLATION
 
