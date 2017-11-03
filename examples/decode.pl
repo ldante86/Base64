@@ -13,7 +13,12 @@ use Base64 qw(decode);
 ## Usage: decode.pl < file
 ## or read from standard input
 
+my $file = '';
+
 foreach my $line (<STDIN>) {
-  chomp($line);
-  decode($line);
+  $line =~ s/\n//g;
+  $file .= $line;
 }
+
+
+decode($file);
