@@ -27,3 +27,6 @@ These files utilize the Base64 module.
 * encode.sh
   - Usage: ````sh encode.sh string````
   - This script shows how to use the Base64 module as a perl one-liner. Encode version.
+* stdin1.pl
+  - Usage: ````perl stdin1.pl````
+  - Encode string through standard input.
