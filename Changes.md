@@ -6,3 +6,5 @@
 	- added line wrapping to encode() with $wrap and $width variables.
 	- added TODO.md
 	- small updates
+* 0.03  Fri Nov  3 2017
+	- fixed memory issue with decode(). I created a hash table that sped things up.

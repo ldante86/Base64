@@ -12,6 +12,7 @@ use Base64 qw(encode);
 
 
 while (<>) {
+  next if ("$_" eq "\n");
   chomp($_);
   encode($_);
 }

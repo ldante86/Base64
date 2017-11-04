@@ -1,4 +1,4 @@
-# Base64 version 0.02
+# Base64 version 0.03
 
 ## MODULE
 
