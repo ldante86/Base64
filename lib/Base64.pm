@@ -131,6 +131,7 @@ sub decode {
 
   for ($i = 0; $i < length($str)-1; $i++) {
     $d = substr($str, $i, 1);
+    last if ($d eq '');
     $offset .= dec_to_bin($offset{$d});
   }
 
