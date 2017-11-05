@@ -25,22 +25,26 @@ This library contains functions for encoding and decoding base64 strings. When e
 
 ## FUNCTIONS
 
-#### encode("$str");
+### encode("$str");
 Encode "$str" to standard output.
-#### decode("$str");
+
+### decode("$str");
 Decode "$str" to standard output.
 
 ## VARIABLES
 
 A 0 value means off; 1 means on.
 
-#### $Base64::newline = 0;
+````$Base64::newline = 0;````
+
 Disable the newline character in encoded output.
 
-#### $Base64::wrap = 0;
+````$Base64::wrap = 0;````
+
 Enable line wrapping.
 
-#### $Base64::width = 80;
+````$Base64::width = 80;````
+
 Specify the line width. The default is 80 columns.
 
 ## INSTALLATION
@@ -55,6 +59,8 @@ To install this module type the following:
 ````
 
 ## OTHERS
+
+*/bin/base64.pl* is standalone program and provides a front-end to this module.
 
 In */examples* there are several scripts that utilize the functions in this library. This module does not have to be installed in order to use the examples as long as they are executed from inside the project directory.
 
