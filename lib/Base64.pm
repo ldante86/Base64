@@ -146,7 +146,7 @@ sub decode {
     print bin_to_ascii(substr($offset, $i, 8));
   }
 
-  print "\n";
+#  print "\n";
 }
 1;
 
