@@ -9,9 +9,6 @@ These files utilize the Base64 module.
 * b64.pl
   - Usage: ````perl b64.pl string````
   - Encode a string as a command line argument.
-* base64.pl
-  - Usage: ````perl base64.pl [-d -h -n] string````
-  - Encode/decode a string as a command line argument. See ````-h```` for more information.
 * d64.pl
   - Usage: ````perl d64.pl string````
   - Decode a base64 string as a command line argument.
