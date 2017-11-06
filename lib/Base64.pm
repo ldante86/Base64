@@ -154,7 +154,7 @@ __END__
 
 =head1 NAME
 
-B<Base64> - Encode/decode base64 strings.
+Base64 - Encode/decode base64 strings.
 
 =head1 SYNOPSIS
 
