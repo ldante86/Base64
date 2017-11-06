@@ -93,7 +93,7 @@ perl base64.pl -d < infile [> outfile]
 
 or through a pipe:
 ````
-cat omfile | perl base64.pl -d [> outfile]
+cat infile | perl base64.pl -d [> outfile]
 ````
 
 ## COPYRIGHT AND LICENSE
