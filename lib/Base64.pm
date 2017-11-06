@@ -116,17 +116,11 @@ sub encode {
 }
 
 sub decode {
-  my ($str, $i, $d, $n, $bin, $trim) = ($_[0], 0, 0, 0, '', 0);
-  my ($l_4, $l_2, $l) = (substr($str, -4), substr($str, -2), substr($str, -1));
+  my ($str, $i, $d, $n, $bin, $trim, $end) = ($_[0], 0, 0, 0, '', 0, 0);
+  my $l = substr($_[0], -1);
 
-  if ($l_4 eq $end[2]) {
-    $trim = $end[2];
-  }
-  elsif ($l_2 eq $end[0] || $l_2 eq $end[3]) {
-    $trim = $end[3];
-  }
-  elsif ($l eq $end[1] || $l eq $end[4]) {
-    $trim = $end[4];
+  if ($l eq $end[1] || $l eq $end[4]) {
+    $end = 2;
   }
 
   for ($i = 0; $i < length($str)-1; $i++) {
@@ -135,10 +129,10 @@ sub decode {
     $bin .= dec_to_bin($offset{$d});
   }
 
-  if ($trim eq $end[4] || $trim eq $end[1]) {
+  if ($end == 2) {
     $bin = substr($bin, 0, -2);
   }
-  elsif ($trim eq $end[3] || $trim eq $end[2]) {
+  else {
     $bin = substr($bin, 0, -4);
   }
 
