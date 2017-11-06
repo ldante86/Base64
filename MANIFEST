@@ -13,6 +13,8 @@ examples/README.md
 examples/stdin1.pl
 lib/Base64.pm
 Makefile.PL
+man/base64-pl.1
+man/Base64.3pm
 MANIFEST			This list of files
 README.md
 t/Base64.t
