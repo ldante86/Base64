@@ -129,7 +129,7 @@ sub decode {
     $trim = $end[4];
   }
 
-  for ($i = 0; $i < length($str)-1; $i++) {
+  for ($i = 0; $i < length($str)-2; $i++) {
     $d = substr($str, $i, 1);
     last if ($d eq '');
     $offset .= dec_to_bin($offset{$d});
