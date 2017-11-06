@@ -9,4 +9,7 @@ WriteMakefile(
     ABSTRACT_FROM     => 'lib/Base64.pm',
     AUTHOR            => 'Luciano Dante Cecere <ldante1986@gmail.com>',
     LICENSE           => 'perl',
+    dist	      => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
+    EXE_FILES	      => [ qw(bin/base64.pl) ],
+
 );
