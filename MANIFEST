@@ -1,26 +1,19 @@
-.
-├── bin
-│   ├── base64.pl
-│   └── README.md
-├── Changes.md
-├── examples
-│   ├── b64.pl
-│   ├── d64.pl
-│   ├── decode.pl
-│   ├── decode.sh
-│   ├── encode.pl
-│   ├── encode.sh
-│   ├── gnu.64
-│   ├── README.md
-│   └── stdin1.pl
-├── lib
-│   └── Base64.pm
-├── Makefile.PL
-├── MANIFEST
-├── MANIFEST.md
-├── README.md
-├── t
-│   └── Base64.t
-└── TODO.md
-
-4 directories, 19 files
+_config.yml
+bin/base64.pl
+bin/README.md
+Changes.md
+examples/b64.pl
+examples/d64.pl
+examples/decode.pl
+examples/decode.sh
+examples/encode.pl
+examples/encode.sh
+examples/gnu.64
+examples/README.md
+examples/stdin1.pl
+lib/Base64.pm
+Makefile.PL
+MANIFEST			This list of files
+README.md
+t/Base64.t
+TODO.md
