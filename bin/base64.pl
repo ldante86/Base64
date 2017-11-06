@@ -137,3 +137,77 @@ foreach my $line (<STDIN>) {
 
 encode($file);
 
+__END__
+
+=head1 NAME
+
+base64.pl - encode/decode base64 data
+
+=head1 SYNOPSIS
+
+    perl base64.pl [option] [<infile] [>outfile]
+
+    perl base64.pl [STDIN]
+    perl base64.pl [STDIN] > outfile
+    perl base64.pl -s string [> outfile]
+    perl base64.pl -w [> outfile]
+    perl base64.pl --width=76 [> outfile]
+    perl base64.pl -n [> outfile]
+    perl base64.pl < infile [> outfile]
+    cat infile | perl base64.pl [> outfile]
+    cat infile | perl base64.pl --width=76 -n [> outfile]
+    perl base64.pl [STDIN]
+    perl base64.pl -d [STDIN] [> outfile]
+    perl base64.pl -sd base64-string [> outfile]
+    perl base64.pl -d < infile [> outfile]
+    cat infile | perl base64.pl -d [> outfile]
+
+=head1 DESCRIPTION
+
+This script is a tool for encoding and decoding base64 data. Running this
+script without options (or with only -d) will read from standard input. See the
+SYNOPSIS above.
+
+=head1 OPTIONS
+
+=over 12
+
+=item B<-d --decode>
+
+Decode base64 data.
+
+=item B<-h --help>
+
+Print help text and exit.
+
+=item B<-n --no-newline>
+
+Suppress newline character in encoded output.
+
+=item B<-s --string> "string"
+
+Encode a string from the command line. Must be quoted.
+
+=item B<-sd --string-decode> base64-string
+
+Decode a base64 string from the command line.
+
+=item B<-w --wrap>
+
+Enable line wrapping. Default line width is 80 columns.
+
+=item B<--width=num>
+
+Set line width. This option automatically turns on line wrapping.
+
+=back
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright (C) 2017 by B<Luciano Dante Cecere>
+
+B<base64.pl> is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself, either Perl version 5.22.1 or,
+at your option, any later version of Perl 5 you may have available.
+
+=cut
