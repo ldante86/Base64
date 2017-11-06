@@ -119,9 +119,7 @@ sub decode {
   my ($str, $i, $d, $n, $bin, $trim, $end) = ($_[0], 0, 0, 0, '', 0, 0);
   my $l = substr($_[0], -1);
 
-  if ($l eq $end[1] || $l eq $end[4]) {
-    $end = 2;
-  }
+  if ($l eq $end[1] || $l eq $end[4]) { $end = 2; }
 
   for ($i = 0; $i < length($str)-1; $i++) {
     $d = substr($str, $i, 1);
@@ -129,12 +127,8 @@ sub decode {
     $bin .= dec_to_bin($offset{$d});
   }
 
-  if ($end == 2) {
-    $bin = substr($bin, 0, -2);
-  }
-  else {
-    $bin = substr($bin, 0, -4);
-  }
+  if ($end == 2)    { $bin = substr($bin, 0, -2); }
+  else              { $bin = substr($bin, 0, -4); }
 
   for ($i = 0 ; $i < length($bin); $i += 8) {
     print bin_to_ascii(substr($bin, $i, 8));
