@@ -1,7 +1,6 @@
 package Base64;
 
-use 5.022001;
-#use 5.010;
+use 5.010;
 use strict;
 use warnings;
 
@@ -117,7 +116,7 @@ sub encode {
 }
 
 sub decode {
-  my ($str, $i, $d, $n, $offset, $trim) = ($_[0], 0, 0, 0, '', 0);
+  my ($str, $i, $d, $n, $bin, $trim) = ($_[0], 0, 0, 0, '', 0);
   my ($l_4, $l_2, $l) = (substr($str, -4), substr($str, -2), substr($str, -1));
 
   if ($l_4 eq $end[2]) {
@@ -133,18 +132,18 @@ sub decode {
   for ($i = 0; $i < length($str)-1; $i++) {
     $d = substr($str, $i, 1);
     last if ($d eq '');
-    $offset .= dec_to_bin($offset{$d});
+    $bin .= dec_to_bin($offset{$d});
   }
 
   if ($trim eq $end[4] || $trim eq $end[1]) {
-    $offset = substr($offset, 0, -2);
+    $bin = substr($bin, 0, -2);
   }
   elsif ($trim eq $end[3] || $trim eq $end[2]) {
-    $offset = substr($offset, 0, -4);
+    $bin = substr($bin, 0, -4);
   }
 
-  for ($i = 0 ; $i < length($offset); $i += 8) {
-    print bin_to_ascii(substr($offset, $i, 8));
+  for ($i = 0 ; $i < length($bin); $i += 8) {
+    print bin_to_ascii(substr($bin, $i, 8));
   }
 
   print "\n";
