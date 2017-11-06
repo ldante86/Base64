@@ -37,10 +37,10 @@ perl base64.pl > outfile
 
 To encode a string as a command line argument:
 ````
-perl base64.pl -s string [> outfile]
+perl base64.pl -s "string" [> outfile]
 ````
 
-By default encoded data is printed as a single line. To break the encoded data up into even lines, enable the wrap feature:
+By default encoded data is printed as a single line. The string must be quoted. To break the encoded data up into even lines, enable the wrap feature:
 ````
 perl base64.pl -w [> outfile]
 ````
