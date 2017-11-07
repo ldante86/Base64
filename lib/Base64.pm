@@ -13,7 +13,6 @@ our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 our $VERSION = '0.03';
 
 our @base64      =       ( "A".."Z", "a".."z", "0".."9", "+", "/" );
-our @end         =       qw( o= K Cg== == = );
 our $newline	=	0;      ## 0 = add new line, 1 = no new line
 our $width	=	80;
 our $wrap	=	0;
@@ -74,11 +73,6 @@ sub dec_to_bin {
   sprintf("%.6b", $_[0]);
 }
 
-### This routine encodes an ascii string into a base64 string.
-##  Usage:
-##    encode("$string");
-##  $newline = 0	print newline character ('\n')
-##  $newline = 1	print no newline character
 sub encode {
   my ($c, $block, $lb, $i, $str) = (0, 0, 0, 0, ascii_to_bin(@_));
 
@@ -103,32 +97,31 @@ sub encode {
   else          { $lb -= 1; }
 
   if ($newline == 0) {
-    if          ($lb == 1)      { print "$end[0]\n"; }
-    elsif       ($lb == 2)      { print "$end[1]\n"; }
-    else                        { print "$end[2]\n"; }
-  }
-  else {
-    if          ($lb == 1)      { print "$end[3]\n"; }
-    elsif       ($lb == 2)      { print "$end[4]\n"; }
+    if          ($lb == 1)      { print "==\n"; }
+    elsif       ($lb == 2)      { print "=\n"; }
     else                        { print "\n"; }
   }
+    else                        { print "\n"; }
 
 }
 
 sub decode {
   my ($str, $i, $d, $n, $bin, $trim, $end) = ($_[0], 0, 0, 0, '', 0, 0);
   my $l = substr($_[0], -1);
+  my $l2 = substr($_[0], -2);
 
-  if ($l eq $end[1] || $l eq $end[4]) { $end = 2; }
+  if ("$l2" eq "==")	{ $end = 1; }
+  elsif ("$l" eq "=")	{ $end = 2; }
+  else			{ $end = length($str) % 8; }
 
-  for ($i = 0; $i < length($str)-1; $i++) {
+  for ($i = 0; $i < length($str); $i++) {
     $d = substr($str, $i, 1);
-    last if ($d eq '');
     $bin .= dec_to_bin($offset{$d});
   }
 
-  if ($end == 2)    { $bin = substr($bin, 0, -2); }
-  else              { $bin = substr($bin, 0, -4); }
+  if	($end == 1)	{ $bin = substr($bin, 0, -1); }
+  elsif	($end == 2)	{ $bin = substr($bin, 0, -2); }
+  elsif ($end == 3)	{ $bin = substr($bin, 0, -3); }
 
   for ($i = 0 ; $i < length($bin); $i += 8) {
     print bin_to_ascii(substr($bin, $i, 8));
