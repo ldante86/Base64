@@ -14,7 +14,7 @@ echo "Original string: $string"
 echo "Encoded string: $encoded"
 echo "Decoded string: $decoded"
 
-if [[ $encode == $decode ]]; then
+if [[ "$string" == "$decoded" ]]; then
 	echo "Identical"
 else
 	echo "Strings are different"
