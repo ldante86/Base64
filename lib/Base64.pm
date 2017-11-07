@@ -2,7 +2,7 @@ package Base64;
 
 use 5.010;
 use strict;
-use warnings;
+#use warnings;
 
 require Exporter;
 
@@ -102,7 +102,6 @@ sub encode {
     else                        { print "\n"; }
   }
     else                        { print "\n"; }
-
 }
 
 sub decode {
@@ -110,11 +109,11 @@ sub decode {
   my $l = substr($_[0], -1);
   my $l2 = substr($_[0], -2);
 
-  if ("$l2" eq "==")	{ $end = 1; }
+  if	("$l2" eq "==")	{ $end = 1; }
   elsif ("$l" eq "=")	{ $end = 2; }
   else			{ $end = length($str) % 8; }
 
-  for ($i = 0; $i < length($str); $i++) {
+  for ($i = 0; $i < length($str)-1; $i++) {
     $d = substr($str, $i, 1);
     $bin .= dec_to_bin($offset{$d});
   }
