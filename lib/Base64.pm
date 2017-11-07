@@ -126,8 +126,6 @@ sub decode {
   for ($i = 0 ; $i < length($bin); $i += 8) {
     print bin_to_ascii(substr($bin, $i, 8));
   }
-
-  print "\n";
 }
 1;
 
