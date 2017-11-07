@@ -27,3 +27,6 @@ These files utilize the Base64 module.
 * stdin1.pl
   - Usage: ````perl stdin1.pl````
   - Encode string through standard input.
+* strdiff.sh
+  - Usage: bash ````strdiff.sh```` "string"
+  - Encode a string, decode it, then compare it. 
