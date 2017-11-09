@@ -29,31 +29,31 @@ use 5.010;
 
 use File::Basename qw(dirname);
 use Cwd qw(abs_path);
-use lib dirname(dirname abs_path $0) . '/lib';
+use lib dirname( dirname abs_path $0) . '/lib';
 
 use Getopt::Long;
 use Base64 qw(encode decode);
 
-$Base64::wrap = 0;	# default is off
-$Base64::width = 80;	# default is 80 columns
-$Base64::newline = 0;	# default if off
+$Base64::wrap    = 0;     # default is off
+$Base64::width   = 80;    # default is 80 columns
+$Base64::newline = 0;     # default if off
 
-my $request_wrap = '';
-my @request_width = ();
-my $request_no_newline = '';
-my $request_decode = '';
-my $request_help = '';
-my @request_string = ();
+my $request_wrap          = '';
+my @request_width         = ();
+my $request_no_newline    = '';
+my $request_decode        = '';
+my $request_help          = '';
+my @request_string        = ();
 my @request_string_decode = ();
 
 GetOptions(
-  'd|decode'		=> \$request_decode,
-  'h|help'		=> \$request_help,
-  'n|no_newline'	=> \$request_no_newline,
-  's=s{0,}'		=> \@request_string,
-  'sd=s{0,}'		=> \@request_string_decode,
-  'w|wrap'		=> \$request_wrap,
-  'width=i{1}'		=> \@request_width,
+    'd|decode'     => \$request_decode,
+    'h|help'       => \$request_help,
+    'n|no_newline' => \$request_no_newline,
+    's=s{0,}'      => \@request_string,
+    'sd=s{0,}'     => \@request_string_decode,
+    'w|wrap'       => \$request_wrap,
+    'width=i{1}'   => \@request_width,
 );
 
 my $help = "
@@ -84,55 +84,54 @@ Options
 
 ";
 
-
 ################################################################################
 if ($request_help) {
-  print $help;
-  exit;
+    print $help;
+    exit;
 }
 
 if ($request_wrap) {
-  $Base64::wrap = 1;
-  shift
+    $Base64::wrap = 1;
+    shift;
 }
 
 if (@request_width) {
-  $Base64::wrap = 1;
-  $Base64::width = $request_width[0];
-  shift;
+    $Base64::wrap  = 1;
+    $Base64::width = $request_width[0];
+    shift;
 }
 
 if ($request_no_newline) {
-  $Base64::newline = 1;
-  shift;
+    $Base64::newline = 1;
+    shift;
 }
 
 if ($request_decode) {
-  my $file = '';
+    my $file = '';
 
-  foreach my $line (<STDIN>) {
-    $line =~ s/\n//g;
-    $file .= $line;
-  }
+    foreach my $line (<STDIN>) {
+        $line =~ s/\n//g;
+        $file .= $line;
+    }
 
-  decode($file);
-  exit;
+    decode($file);
+    exit;
 }
 
 if (@request_string) {
-  encode("$request_string[0]");
-  exit;
+    encode("$request_string[0]");
+    exit;
 }
 
 if (@request_string_decode) {
-  decode("$request_string_decode[0]");
-  exit;
+    decode("$request_string_decode[0]");
+    exit;
 }
 
 my $file = '';
 
 foreach my $line (<STDIN>) {
-  $file .= $line;
+    $file .= $line;
 }
 
 encode($file);
